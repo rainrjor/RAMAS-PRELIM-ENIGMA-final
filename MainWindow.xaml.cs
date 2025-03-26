@@ -15,11 +15,13 @@ using System.Windows.Shapes;
 
 namespace RAMAS_PRELIM_ENIGMA
 {
+    /// test
+    ///newest push of 3:40am
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-   
-        public partial class MainWindow : Window
+
+    public partial class MainWindow : Window
         {
             // Constants for rotor wiring and reflector
             string _control = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"; // Standard alphabet for reference
@@ -80,17 +82,16 @@ namespace RAMAS_PRELIM_ENIGMA
             // Handle keyboard input
             private void Window_KeyDown(object sender, KeyEventArgs e)
             {
-            // Check for uppercase letters and message length
-            string key = e.Key.ToString();
+            if (!_rotor) return; // If rotors are not set, do nothing (no warning spam)
 
-            // Handle A-Z key inputs
+              string key = e.Key.ToString();
+
             if (key.Length == 1 && key[0] >= 'A' && key[0] <= 'Z' && lblInput.Content.ToString().Length < 128)
             {
-                lblInput.Content += key; // Append input character
-                lblEncrpyt.Content += Encrypt(key[0]).ToString(); // Convert to string before appending
+                lblInput.Content += key;
+                lblEncrpyt.Content += Encrypt(key[0]).ToString();
                 lblEncrpytMirror.Content += Mirror(key[0]).ToString();
 
-                // Light up the key
                 Label letterLabel = FindName(key) as Label;
                 if (letterLabel != null)
                 {
@@ -101,23 +102,17 @@ namespace RAMAS_PRELIM_ENIGMA
                     });
                 }
 
-                // Rotate rotors if enabled
-                if (_rotor)
-                {
-                    Rotate(true);
-                    DisplayRing(lblRing1, _ring1);
-                    DisplayRing(lblRing2, _ring2);
-                    DisplayRing(lblRing3, _ring3);
-                }
+                Rotate(true);
+                DisplayRing(lblRing1, _ring1);
+                DisplayRing(lblRing2, _ring2);
+                DisplayRing(lblRing3, _ring3);
             }
-            // Handle space key
             else if (e.Key == Key.Space)
             {
                 lblInput.Content += " ";
                 lblEncrpyt.Content += " ";
                 lblEncrpytMirror.Content += " ";
             }
-            // Handle backspace key
             else if (e.Key == Key.Back && lblInput.Content.ToString().Length > 0)
             {
                 lblInput.Content = RemoveLastLetter(lblInput.Content.ToString());
@@ -128,7 +123,27 @@ namespace RAMAS_PRELIM_ENIGMA
 
 
 
+        private void DisableEncryption()
+        {
+            lblInput.Content = "Set rotors first!";
+            lblEncrpyt.Content = "";
+            lblEncrpytMirror.Content = "";
+            lblInput.IsEnabled = false;
+            lblEncrpyt.IsEnabled = false;
+            lblEncrpytMirror.IsEnabled = false;
+        }
 
+        private void EnableEncryption()
+        {
+            lblInput.Content = "";
+            lblEncrpyt.Content = "";
+            lblEncrpytMirror.Content = "";
+            lblInput.IsEnabled = true;
+            lblEncrpyt.IsEnabled = true;
+            lblEncrpytMirror.IsEnabled = true;
+        }
+
+        //new
         // Encrypt a character
         private char Encrypt(char letter)
             {
@@ -273,7 +288,8 @@ namespace RAMAS_PRELIM_ENIGMA
                 !int.TryParse(txtBRing2Init.Text, out _initOffset[1]) ||
                 !int.TryParse(txtBRing3Init.Text, out _initOffset[2]))
             {
-                MessageBox.Show("Please enter valid numbers (0-25) for rotor positions.", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Please enter valid integer values (0-25) for rotor settings.", "Invalid Input", MessageBoxButton.OK, MessageBoxImage.Warning);
+                DisableEncryption(); // Disable encryption-related UI
                 return;
             }
 
@@ -281,17 +297,21 @@ namespace RAMAS_PRELIM_ENIGMA
                 _initOffset[1] < 0 || _initOffset[1] > 25 ||
                 _initOffset[2] < 0 || _initOffset[2] > 25)
             {
-                MessageBox.Show("Rotor values must be between 0 and 25.", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Rotor values must be between 0 and 25.", "Invalid Input", MessageBoxButton.OK, MessageBoxImage.Warning);
+                DisableEncryption(); // Disable encryption-related UI
                 return;
             }
 
+            // If all values are valid, enable encryption and lock settings
             txtBRing1Init.IsEnabled = false;
             txtBRing2Init.IsEnabled = false;
             txtBRing3Init.IsEnabled = false;
 
             _rotor = true;
-            btnRotor.Content = "Settings Locked";
+            btnRotor.Content = "Settings Lock";
+            EnableEncryption(); // Enable encryption-related UI
 
+            // Initialize rotor positions
             _ring1 = InitializeRotors(_initOffset[0], _ring1);
             _ring2 = InitializeRotors(_initOffset[1], _ring2);
             _ring3 = InitializeRotors(_initOffset[2], _ring3);

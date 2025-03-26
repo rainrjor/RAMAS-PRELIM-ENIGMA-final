@@ -20,18 +20,18 @@
         <Label x:Name="lblRing1" Content="Label" HorizontalAlignment="Left" Margin="78,114,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
         <Label x:Name="lblRing2" Content="Label" HorizontalAlignment="Left" Margin="78,145,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
         <Label x:Name="lblRing3" Content="Label" HorizontalAlignment="Left" Margin="78,176,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-        
+
         <Label x:Name="lblInput" Content="Input" HorizontalAlignment="Left" Margin="13,521,0,0" VerticalAlignment="Top" FontFamily="Courier New" FontWeight="Bold"/>
         <Label x:Name="lblEncrpyt" Content="Encrypt" HorizontalAlignment="Left" Margin="10,286,0,0" VerticalAlignment="Top" FontFamily="Courier New" FontWeight="Bold"/>
         <Label x:Name="lblEncrpytMirror" Content="Mirror" HorizontalAlignment="Left" Margin="13,415,0,0" VerticalAlignment="Top" FontFamily="Courier New" FontWeight="Bold"/>
-        
-        <Button x:Name="btnRotor"  Content="Rotor On" HorizontalAlignment="Left" Margin="8,60,0,0" VerticalAlignment="Top" Click="btnRotor_Click"/>
-        <TextBox x:Name="txtBRing1Init" HorizontalAlignment="Left" Margin="95,61,0,0" TextWrapping="Wrap" Text="0 - 25" VerticalAlignment="Top" Width="41" Height="18" GotFocus="txtBRing1Init_GotFocus" HorizontalContentAlignment="Center"/>
-        <TextBox x:Name="txtBRing2Init" HorizontalAlignment="Left" Margin="167,61,0,0" TextWrapping="Wrap" Text="0 - 25" VerticalAlignment="Top" Width="41" GotFocus="txtBRing2Init_GotFocus" HorizontalContentAlignment="Center"/>
-        <TextBox x:Name="txtBRing3Init" HorizontalAlignment="Left" Margin="234,61,0,0" TextWrapping="Wrap" Text="0 -25" VerticalAlignment="Top" Width="41" Height="18" GotFocus="txtBRing3Init_GotFocus" HorizontalContentAlignment="Center"/>
-        <Label Content="H" HorizontalAlignment="Left" Margin="71,57,0,0" VerticalAlignment="Top"/>
-        <Label Content="M" HorizontalAlignment="Left" Margin="141,57,0,0" VerticalAlignment="Top"/>
-        <Label Content="S" HorizontalAlignment="Left" Margin="213,57,0,0" VerticalAlignment="Top"/>
+
+        <Button x:Name="btnRotor"  Content="Rotor On" HorizontalAlignment="Left" Margin="8,60,0,0" VerticalAlignment="Top" Click="btnRotor_Click" Width="79"/>
+        <TextBox x:Name="txtBRing1Init" HorizontalAlignment="Left" Margin="116,60,0,0" TextWrapping="Wrap" Text="0 - 25" VerticalAlignment="Top" Width="42" Height="18" GotFocus="txtBRing1Init_GotFocus" HorizontalContentAlignment="Center"/>
+        <TextBox x:Name="txtBRing2Init" HorizontalAlignment="Left" Margin="188,60,0,0" TextWrapping="Wrap" Text="0 - 25" VerticalAlignment="Top" Width="42" GotFocus="txtBRing2Init_GotFocus" HorizontalContentAlignment="Center"/>
+        <TextBox x:Name="txtBRing3Init" HorizontalAlignment="Left" Margin="256,60,0,0" TextWrapping="Wrap" Text="0 -25" VerticalAlignment="Top" Width="40" Height="18" GotFocus="txtBRing3Init_GotFocus" HorizontalContentAlignment="Center"/>
+        <Label Content="H" HorizontalAlignment="Left" Margin="92,56,0,0" VerticalAlignment="Top"/>
+        <Label Content="M" HorizontalAlignment="Left" Margin="162,56,0,0" VerticalAlignment="Top"/>
+        <Label Content="S" HorizontalAlignment="Left" Margin="234,56,0,0" VerticalAlignment="Top"/>
 
         <Label Content="Input Message:" HorizontalAlignment="Left" Margin="10,464,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
         <Label Content="Encrypted Message:" HorizontalAlignment="Left" Margin="8,238,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
